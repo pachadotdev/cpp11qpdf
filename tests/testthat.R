@@ -1,4 +1,4 @@
 library(testthat)
-library(qpdf)
+library(cpp11qpdf)
 
-test_check("qpdf")
+test_check("cpp11qpdf")

@@ -7,3 +7,4 @@ appveyor.yml
 \.a$
 README.md
 ^\.github$
+^\.vscode$

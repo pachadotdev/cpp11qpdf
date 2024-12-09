@@ -1,0 +1,21 @@
+---
+title: "cpp11qpdf"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{cpp11qpdf}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Complete later
+
+```{r setup}
+library(cpp11qpdf)
+```

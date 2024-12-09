@@ -1,5 +1,3 @@
-context("test rotate pages")
-
 test_that("pdf_rotate_pages works", {
   pdf_file <- 'pdf-example-password.original.pdf'
   ## rotating by 90 and by -270 should give the same result
