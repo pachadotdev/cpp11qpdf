@@ -1,17 +1,26 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # cpp11qpdf
 
 <!-- badges: start -->
-
 [![R-CMD-check](https://github.com/pachadotdev/cpp11qpdf/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/cpp11qpdf/actions/workflows/R-CMD-check.yaml)
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
-The goal of cpp11qpdf is to …
+The goal of cpp11qpdf is to ...
 
 ## Installation
 
@@ -25,10 +34,9 @@ remotes::install_github("pachadotdev/cpp11qpdf")
 
 All functions take one or more input and output pdf files.
 
-``` r
+```{r example}
 tmpdir <- tempdir()
 library(cpp11qpdf)
 file <- file.path(Sys.getenv("R_DOC_DIR"), "NEWS.pdf")
 pdf_compress(file, file.path(tmpdir, "output.pdf"))
-#> [1] "/tmp/RtmpVBtafj/output.pdf"
 ```
