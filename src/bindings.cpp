@@ -10,39 +10,31 @@ using namespace cpp11;
 static void read_pdf_with_password(char const* infile, char const* password,
                                    QPDF* pdf) {
   try {
-    pdf->processFile(infile, password);
+    // If the password is an empty string, pass NULL to processFile
+    pdf->processFile(infile,
+                     (password && strlen(password) > 0) ? password : NULL);
   } catch (const std::exception& e) {
-    if (strlen(password) == 0 && strstr(e.what(), "password") != NULL) {
-      cpp11::function askpass =
-          cpp11::package("cpp11qpdf")["password_callback"];
-      cpp11::sexp pass = askpass("Please enter password to open PDF file");
-      cpp11::writable::strings value(Rf_asChar(pass));
-      std::string password_str = cpp11::r_string(value[0]);
-
-      // this is only for testing the new password */
-      QPDF pdf2;
-      pdf2.processFile(infile, password_str.c_str());
-
-      // actually read it
-      pdf->processFile(infile, password_str.c_str());
-    } else {
-      throw;
-    }
+    cpp11::stop("Failed to read PDF file: %s", e.what());
   }
 }
 
-[[cpp11::register]] int cpp_pdf_length(char const* infile, char const* password){
+[[cpp11::register]] int cpp_pdf_length(char const* infile,
+                                       const cpp11::strings& password) {
   QPDF pdf;
-  read_pdf_with_password(infile, password, &pdf);
+  std::string password_str =
+      password.size() > 0 ? cpp11::r_string(password.at(0)) : "";
+  read_pdf_with_password(infile, password_str.c_str(), &pdf);
   QPDFObjectHandle root = pdf.getRoot();
   QPDFObjectHandle pages = root.getKey("/Pages");
   QPDFObjectHandle count = pages.getKey("/Count");
   return count.getIntValue();
 }
 
-[[cpp11::register]] cpp11::strings cpp_pdf_split(char const* infile, std::string outprefix, char const* password){
+[[cpp11::register]] cpp11::strings cpp_pdf_split(char const* infile, std::string outprefix, const cpp11::strings& password){
   QPDF inpdf;
-  read_pdf_with_password(infile, password, &inpdf);
+  std::string password_str =
+      password.size() > 0 ? cpp11::r_string(password.at(0)) : "";
+  read_pdf_with_password(infile, password_str.c_str(), &inpdf);
   std::vector<QPDFPageObjectHelper> pages =  QPDFPageDocumentHelper(inpdf).getAllPages();
   cpp11::writable::strings output(pages.size());
   size_t i, countlen;
@@ -62,9 +54,11 @@ static void read_pdf_with_password(char const* infile, char const* password,
 }
 
 [[cpp11::register]] cpp11::strings cpp_pdf_select(char const* infile, char const* outfile,
-                                     cpp11::integers which, char const* password){
+                                     cpp11::integers which, const cpp11::strings& password){
   QPDF inpdf;
-  read_pdf_with_password(infile, password, &inpdf);
+  std::string password_str =
+      password.size() > 0 ? cpp11::r_string(password.at(0)) : "";
+  read_pdf_with_password(infile, password_str.c_str(), &inpdf);
   std::vector<QPDFPageObjectHelper> pages =  QPDFPageDocumentHelper(inpdf).getAllPages();
   QPDF outpdf;
   outpdf.emptyPDF();
@@ -81,13 +75,15 @@ static void read_pdf_with_password(char const* infile, char const* password,
 
 [[cpp11::register]] cpp11::strings cpp_pdf_combine(cpp11::strings infiles,
                                                    char const* outfile,
-                                                   char const* password) {
+                                                   const cpp11::strings& password) {
   QPDF outpdf;
   outpdf.emptyPDF();
   for (int i = 0; i < infiles.size(); i++) {
     QPDF inpdf;
     std::string infile_str = cpp11::r_string(infiles.at(i));
-    read_pdf_with_password(infile_str.c_str(), password, &inpdf);
+    std::string password_str =
+        password.size() > 0 ? cpp11::r_string(password.at(0)) : "";
+    read_pdf_with_password(infile_str.c_str(), password_str.c_str(), &inpdf);
     std::vector<QPDFPageObjectHelper> pages =
         QPDFPageDocumentHelper(inpdf).getAllPages();
     size_t j;
@@ -105,9 +101,11 @@ static void read_pdf_with_password(char const* infile, char const* password,
 [[cpp11::register]] cpp11::strings cpp_pdf_compress(char const* infile,
                                                     char const* outfile,
                                                     bool linearize,
-                                                    char const* password) {
+                                                    const cpp11::strings& password) {
   QPDF inpdf;
-  read_pdf_with_password(infile, password, &inpdf);
+  std::string password_str =
+      password.size() > 0 ? cpp11::r_string(password.at(0)) : "";
+  read_pdf_with_password(infile, password_str.c_str(), &inpdf);
   QPDFWriter outpdfw(inpdf, outfile);
   outpdfw.setStaticID(true);  // for testing only
   outpdfw.setStreamDataMode(qpdf_s_compress);
@@ -118,9 +116,11 @@ static void read_pdf_with_password(char const* infile, char const* password,
 
 [[cpp11::register]] cpp11::strings cpp_pdf_rotate_pages(char const* infile, char const* outfile,
                                            cpp11::integers which, int angle, bool relative,
-                                           char const* password){
+                                           const cpp11::strings& password){
   QPDF inpdf;
-  read_pdf_with_password(infile, password, &inpdf);
+  std::string password_str =
+      password.size() > 0 ? cpp11::r_string(password.at(0)) : "";
+  read_pdf_with_password(infile, password_str.c_str(), &inpdf);
   std::vector<QPDFPageObjectHelper> pages =  QPDFPageDocumentHelper(inpdf).getAllPages();
   int npages = pages.size();
   QPDF outpdf;
@@ -139,11 +139,13 @@ static void read_pdf_with_password(char const* infile, char const* password,
 }
 
 [[cpp11::register]] cpp11::strings cpp_pdf_overlay(char const* infile, char const* stampfile,
-                                      char const* outfile, char const* password){
+                                      char const* outfile, const cpp11::strings& password){
   QPDF inpdf;
   QPDF stamppdf;
-  read_pdf_with_password(infile, password, &inpdf);
-  read_pdf_with_password(stampfile, password, &stamppdf);
+  std::string password_str =
+      password.size() > 0 ? cpp11::r_string(password.at(0)) : "";
+  read_pdf_with_password(infile, password_str.c_str(), &inpdf);
+  read_pdf_with_password(stampfile, password_str.c_str(), &stamppdf);
 
   // Code from: https://github.com/qpdf/qpdf/blob/release-qpdf-8.4.0/examples/pdf-overlay-page.cc
   QPDFPageObjectHelper stamp_page_1 =  QPDFPageDocumentHelper(stamppdf).getAllPages().at(0);

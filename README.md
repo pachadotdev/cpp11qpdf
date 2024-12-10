@@ -11,7 +11,10 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
-The goal of cpp11qpdf is to …
+## About
+
+The `cpp11qpdf` package provides a set of functions to manipulate PDF
+files using the `qpdf` library.
 
 ## Installation
 
@@ -30,5 +33,5 @@ tmpdir <- tempdir()
 library(cpp11qpdf)
 file <- file.path(Sys.getenv("R_DOC_DIR"), "NEWS.pdf")
 pdf_compress(file, file.path(tmpdir, "output.pdf"))
-#> [1] "/tmp/RtmpVBtafj/output.pdf"
+#> [1] "/tmp/RtmpNx4LFI/output.pdf"
 ```

@@ -9,3 +9,9 @@ README.md
 ^\.github$
 ^\.vscode$
 ^README\.Rmd$
+^tests/testthat/nopassword\.qmd$
+^tests/testthat/nopassword\.pdf$
+^inst/examples/sufganiyot\.qmd$
+^README\.html$
+^CRAN-SUBMISSION$
+^cran-comments\.md$

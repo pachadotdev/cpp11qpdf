@@ -11,17 +11,22 @@
 \alias{pdf_rotate_pages}
 \title{PDF Functions}
 \usage{
-pdf_split(input, output = NULL, password = "")
+pdf_split(input, output = NULL, password = askpass::askpass())
 
-pdf_length(input, password = "")
+pdf_length(input, password = askpass::askpass())
 
-pdf_subset(input, pages = 1, output = NULL, password = "")
+pdf_subset(input, pages = 1, output = NULL, password = askpass::askpass())
 
-pdf_combine(input, output = NULL, password = "")
+pdf_combine(input, output = NULL, password = askpass::askpass())
 
-pdf_compress(input, output = NULL, linearize = FALSE, password = "")
+pdf_compress(
+  input,
+  output = NULL,
+  linearize = FALSE,
+  password = askpass::askpass()
+)
 
-pdf_overlay_stamp(input, stamp, output = NULL, password = "")
+pdf_overlay_stamp(input, stamp, output = NULL, password = askpass::askpass())
 
 pdf_rotate_pages(
   input,
@@ -29,7 +34,7 @@ pdf_rotate_pages(
   angle = 90,
   relative = FALSE,
   output = NULL,
-  password = ""
+  password = askpass::askpass()
 )
 }
 \arguments{
@@ -55,10 +60,8 @@ PDF Functions
 \examples{
 \donttest{
 # extract some pages
-pdf_file <- file.path(tempdir(), "output.pdf")
-pdf_subset('https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf',
-  pages = 1:3, output = pdf_file)
-pdf_length(pdf_file)
-unlink(pdf_file)
+pdf_file <- system.file("examples", "sufganiyot.pdf", package = "cpp11qpdf")
+pdf_subset(pdf_file, 1, pdf_file, password = "")
+pdf_length(pdf_file, password = "")
 }
 }

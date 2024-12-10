@@ -8,13 +8,11 @@
 #' @param password string with password to open pdf file
 #' @examples \donttest{
 #' # extract some pages
-#' pdf_file <- file.path(tempdir(), "output.pdf")
-#' pdf_subset('https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf',
-#'   pages = 1:3, output = pdf_file)
-#' pdf_length(pdf_file)
-#' unlink(pdf_file)
+#' pdf_file <- system.file("examples", "sufganiyot.pdf", package = "cpp11qpdf")
+#' pdf_subset(pdf_file, 1, pdf_file, password = "")
+#' pdf_length(pdf_file, password = "")
 #' }
-pdf_split <- function(input, output = NULL, password = ""){
+pdf_split <- function(input, output = NULL, password = askpass::askpass()){
   input <- get_input(input)
   if(!length(output))
     output <- sub("\\.pdf$", "", input)
@@ -23,7 +21,7 @@ pdf_split <- function(input, output = NULL, password = ""){
 
 #' @export
 #' @rdname cpp11qpdf
-pdf_length <- function(input, password = ""){
+pdf_length <- function(input, password = askpass::askpass()){
   input <- get_input(input)
   cpp_pdf_length(input, password)
 }
@@ -32,7 +30,7 @@ pdf_length <- function(input, password = ""){
 #' @rdname cpp11qpdf
 #' @param pages a vector with page numbers to select. Negative numbers
 #' means removing those pages (same as R indexing)
-pdf_subset <- function(input, pages = 1, output = NULL, password = ""){
+pdf_subset <- function(input, pages = 1, output = NULL, password = askpass::askpass()){
   input <- get_input(input)
   if(!length(output))
     output <- sub("\\.pdf$", "_output.pdf", input)
@@ -46,7 +44,7 @@ pdf_subset <- function(input, pages = 1, output = NULL, password = ""){
 
 #' @export
 #' @rdname cpp11qpdf
-pdf_combine <- function(input, output = NULL, password = ""){
+pdf_combine <- function(input, output = NULL, password = askpass::askpass()){
   input <- get_input_multi(input)
   if(!length(output))
     output <- sub("\\.pdf$", "_combined.pdf", input[1])
@@ -57,7 +55,7 @@ pdf_combine <- function(input, output = NULL, password = ""){
 #' @export
 #' @rdname cpp11qpdf
 #' @param linearize enable pdf linearization (streamable pdf)
-pdf_compress <- function(input, output = NULL, linearize = FALSE, password = ""){
+pdf_compress <- function(input, output = NULL, linearize = FALSE, password = askpass::askpass()){
   input <- get_input(input)
   if(!length(output))
     output <- sub("\\.pdf$", "_output.pdf", input)
@@ -68,7 +66,7 @@ pdf_compress <- function(input, output = NULL, linearize = FALSE, password = "")
 #' @export
 #' @rdname cpp11qpdf
 #' @param stamp pdf file of which the first page is overlayed into each page of input
-pdf_overlay_stamp <- function(input, stamp, output = NULL, password = ""){
+pdf_overlay_stamp <- function(input, stamp, output = NULL, password = askpass::askpass()){
   input <- get_input(input)
   stamp <- get_input(stamp)
   if(!length(output))
@@ -82,7 +80,7 @@ pdf_overlay_stamp <- function(input, stamp, output = NULL, password = ""){
 #' @param pages a vector with page numbers to rotate
 #' @param angle rotation angle in degrees (positive = clockwise)
 #' @param relative if `TRUE`, pages are rotated relative to their current orientation. If `FALSE`, rotation is absolute (0 = portrait, 90 = landscape, rotated 90 degrees clockwise from portrait)
-pdf_rotate_pages <- function(input, pages, angle = 90, relative = FALSE, output = NULL, password = ""){
+pdf_rotate_pages <- function(input, pages, angle = 90, relative = FALSE, output = NULL, password = askpass::askpass()){
   input <- get_input(input)
   if(!length(output))
     output <- sub("\\.pdf$", "_output.pdf", input)
