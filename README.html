@@ -615,12 +615,12 @@ body {
 <p>You can install the development version of cpp11qpdf like so:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;pachadotdev/cpp11qpdf&quot;</span>)</span></code></pre></div>
 <h2 id="example">Example</h2>
-<p>All functions take one or more input and output pdf files.</p>
+<p>See the vignette for more examples.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>tmpdir &lt;-<span class="st"> </span><span class="kw">tempdir</span>()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">library</span>(cpp11qpdf)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>file &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;R_DOC_DIR&quot;</span>), <span class="st">&quot;NEWS.pdf&quot;</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">pdf_compress</span>(file, <span class="kw">file.path</span>(tmpdir, <span class="st">&quot;output.pdf&quot;</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpNx4LFI/output.pdf&quot;</span></span></code></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpKQn8yl/output.pdf&quot;</span></span></code></pre></div>
 
 </body>
 </html>

@@ -34,7 +34,7 @@ remotes::install_github("pachadotdev/cpp11qpdf")
 
 ## Example
 
-All functions take one or more input and output pdf files.
+See the vignette for more examples.
 
 ```{r example}
 tmpdir <- tempdir()

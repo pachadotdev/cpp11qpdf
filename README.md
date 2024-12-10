@@ -26,12 +26,12 @@ remotes::install_github("pachadotdev/cpp11qpdf")
 
 ## Example
 
-All functions take one or more input and output pdf files.
+See the vignette for more examples.
 
 ``` r
 tmpdir <- tempdir()
 library(cpp11qpdf)
 file <- file.path(Sys.getenv("R_DOC_DIR"), "NEWS.pdf")
 pdf_compress(file, file.path(tmpdir, "output.pdf"))
-#> [1] "/tmp/RtmpNx4LFI/output.pdf"
+#> [1] "/tmp/RtmpKQn8yl/output.pdf"
 ```

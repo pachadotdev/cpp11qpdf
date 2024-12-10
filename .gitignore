@@ -6,3 +6,4 @@
 *.dll
 *.a
 inst/doc
+README.html
