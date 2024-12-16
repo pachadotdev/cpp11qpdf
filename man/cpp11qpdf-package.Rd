@@ -2,6 +2,7 @@
 % Please edit documentation in R/cpp11qpdf-package.R
 \docType{package}
 \name{cpp11qpdf-package}
+\alias{cpp11qpdf}
 \alias{cpp11qpdf-package}
 \title{Split, Combine and Compress PDF Files}
 \description{
@@ -12,7 +13,7 @@ combine, and compress.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://docs.pachadotdev.org/cpp11qpdf/ https://pachadotdev.r-universe.dev/cpp11qpdf}
+  \item \url{https://pacha.dev/cpp11qpdf/}
   \item Report bugs at \url{https://github.com/pachadotdev/cpp11qpdf/issues}
 }
 
@@ -22,13 +23,13 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Jeroen Ooms \email{jeroen@berkeley.edu} (\href{https://orcid.org/0000-0002-4035-0289}{ORCID})
+  \item Jeroen Ooms \email{jeroen@berkeley.edu} (\href{https://orcid.org/0000-0002-4035-0289}{ORCID}) (Author of qpdf R package)
 }
 
 Other contributors:
 \itemize{
   \item Ben Raymond [contributor]
-  \item Jay Berkenbilt (Author of libcpp11qpdf) [copyright holder]
+  \item Jay Berkenbilt (Author of qpdf) [copyright holder]
   \item Munk School of Global Affairs and Public Policy [funder]
 }
 

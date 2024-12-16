@@ -1,4 +1,4 @@
-test_that("pdf_rotate_pages works", {
+test_that("rotate file", {
   pdf_file <- 'password.pdf'
   ## rotating by 90 and by -270 should give the same result
   outfile1 <- tempfile(fileext = ".pdf")

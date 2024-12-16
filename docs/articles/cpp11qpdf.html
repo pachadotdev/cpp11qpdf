@@ -63,7 +63,7 @@
 </h2>
 <p>Load the <code>cpp11qpdf</code> package and set the path to an example PDF file included with R for demonstration purposes.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/cpp11qpdf" class="external-link">cpp11qpdf</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/cpp11qpdf/" class="external-link">cpp11qpdf</a></span><span class="op">)</span></span>
 <span><span class="va">input_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples"</span>, <span class="st">"sufganiyot.pdf"</span>, package <span class="op">=</span> <span class="st">"cpp11qpdf"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -72,8 +72,8 @@
 <p>To compress a PDF file, use the <code>pdf_compress</code> function. This function takes an input PDF file and an output file path.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".pdf"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/cpp11qpdf.html">pdf_compress</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpEqR14K/file78f1b7a44b60b.pdf"</span></span>
+<span><span class="fu"><a href="../reference/pdf_compress.html">pdf_compress</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpzN0d8Y/file280f832529efe.pdf"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">output_pdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
@@ -83,9 +83,9 @@
 <p>To rotate pages in a PDF, use the <code>pdf_rotate_pages</code> function. This function takes an input PDF file, the pages to rotate, the angle of rotation, and the output file path.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".pdf"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/cpp11qpdf.html">pdf_rotate_pages</a></span><span class="op">(</span><span class="va">input_pdf</span>, pages <span class="op">=</span> <span class="fl">1</span>, angle <span class="op">=</span> <span class="fl">90</span>, output <span class="op">=</span> <span class="va">output_pdf</span>,</span>
+<span><span class="fu"><a href="../reference/pdf_rotate_pages.html">pdf_rotate_pages</a></span><span class="op">(</span><span class="va">input_pdf</span>, pages <span class="op">=</span> <span class="fl">1</span>, angle <span class="op">=</span> <span class="fl">90</span>, output <span class="op">=</span> <span class="va">output_pdf</span>,</span>
 <span>  password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpEqR14K/file78f1b700623ab.pdf"</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpzN0d8Y/file280f87bab7363.pdf"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">output_pdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
@@ -95,9 +95,10 @@
 <p>To split a PDF into individual pages, use the <code>pdf_split</code> function. This function takes an input PDF file and an output file prefix.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output_prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">output_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cpp11qpdf.html">pdf_split</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="va">output_prefix</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="va">output_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pdf_split.html">pdf_split</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="va">output_prefix</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="va">output_files</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpEqR14K/file78f1b61646c0c_1.pdf"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpzN0d8Y/file280f827d391f8_1.pdf"</span></span>
+<span><span class="co">#&gt; [2] "/tmp/RtmpzN0d8Y/file280f827d391f8_2.pdf"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="combining-multiple-pdfs">Combining Multiple PDFs<a class="anchor" aria-label="anchor" href="#combining-multiple-pdfs"></a>
@@ -106,8 +107,8 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># using the output files from the previous example</span></span>
 <span><span class="va">output_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".pdf"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/cpp11qpdf.html">pdf_combine</a></span><span class="op">(</span><span class="va">output_files</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpEqR14K/file78f1b29103767.pdf"</span></span>
+<span><span class="fu"><a href="../reference/pdf_combine.html">pdf_combine</a></span><span class="op">(</span><span class="va">output_files</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpzN0d8Y/file280f874a67e60.pdf"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">output_pdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
@@ -117,8 +118,8 @@
 <p>To extract specific pages from a PDF, use the <code>pdf_subset</code> function. This function takes an input PDF file, the pages to extract, and the output file path.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">output_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".pdf"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/cpp11qpdf.html">pdf_subset</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="fl">1</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpEqR14K/file78f1b33109ca8.pdf"</span></span>
+<span><span class="fu"><a href="../reference/pdf_subset.html">pdf_subset</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="fl">1</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpzN0d8Y/file280f880dfbcc.pdf"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">output_pdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
@@ -129,8 +130,8 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stamp_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples"</span>, <span class="st">"header.pdf"</span>, package <span class="op">=</span> <span class="st">"cpp11qpdf"</span><span class="op">)</span></span>
 <span><span class="va">output_pdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".pdf"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/cpp11qpdf.html">pdf_overlay_stamp</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="va">stamp_pdf</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpEqR14K/file78f1b50b7d400.pdf"</span></span>
+<span><span class="fu"><a href="../reference/pdf_overlay_stamp.html">pdf_overlay_stamp</a></span><span class="op">(</span><span class="va">input_pdf</span>, <span class="va">stamp_pdf</span>, <span class="va">output_pdf</span>, password <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpzN0d8Y/file280f888e2308.pdf"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">output_pdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Now the pages have a header that is not a part of the original PDF.</p>
@@ -143,7 +144,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jeroen Ooms, Mauricio Vargas Sepulveda, Munk School of Global Affairs and Public Policy.</p>
+  <p>Developed by Mauricio Vargas Sepulveda, Jeroen Ooms, Munk School of Global Affairs and Public Policy.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -6,7 +6,13 @@
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/reference/cpp11qpdf-package.html</loc></url>
-<url><loc>/reference/cpp11qpdf.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/pdf_combine.html</loc></url>
+<url><loc>/reference/pdf_compress.html</loc></url>
+<url><loc>/reference/pdf_length.html</loc></url>
+<url><loc>/reference/pdf_overlay_stamp.html</loc></url>
+<url><loc>/reference/pdf_rotate_pages.html</loc></url>
+<url><loc>/reference/pdf_split.html</loc></url>
+<url><loc>/reference/pdf_subset.html</loc></url>
 </urlset>
 

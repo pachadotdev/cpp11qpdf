@@ -15,3 +15,5 @@ README.md
 ^README\.html$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^docs$
+^_pkgdown\.yml$

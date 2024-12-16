@@ -610,7 +610,7 @@ body {
 <!-- badges: end -->
 
 <h2 id="about">About</h2>
-<p>The <code>cpp11qpdf</code> package provides a set of functions to manipulate PDF files using the <code>qpdf</code> library.</p>
+<p>The <code>cpp11qpdf</code> package provides a set of functions to manipulate PDF files using the <code>qpdf</code> library. It is a fork of <code>qpdf</code> that uses <code>cpp11</code> for those that require it for licensing or security purposes.</p>
 <h2 id="installation">Installation</h2>
 <p>You can install the development version of cpp11qpdf like so:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;pachadotdev/cpp11qpdf&quot;</span>)</span></code></pre></div>
@@ -620,7 +620,7 @@ body {
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">library</span>(cpp11qpdf)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>file &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;R_DOC_DIR&quot;</span>), <span class="st">&quot;NEWS.pdf&quot;</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">pdf_compress</span>(file, <span class="kw">file.path</span>(tmpdir, <span class="st">&quot;output.pdf&quot;</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpKQn8yl/output.pdf&quot;</span></span></code></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;/tmp/RtmpqX9z6s/output.pdf&quot;</span></span></code></pre></div>
 
 </body>
 </html>
